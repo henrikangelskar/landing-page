@@ -1,0 +1,48 @@
+.hero {
+  background-image: url("../../assets/hero-img.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  min-height: 400px; // Make sure no overflow if y height is low
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 52px;
+}
+
+.hero-subtitle {
+  font-size: 22px;
+}
+
+.hero-content,
+.hero-title {
+  margin: 0px 12px;
+}
+
+.text-shadow {
+  text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+    0px -4px 10px rgba(255, 255, 255, 0.3);
+}
+
+.cta-button {
+  background-color: #ff7f50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 26px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.cta-button:hover {
+  background-color: #ff6347;
+}
