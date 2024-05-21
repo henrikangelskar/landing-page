@@ -1,11 +1,12 @@
 import React from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import "./OrderForm.scss";
+import { useFormik } from "formik"; // Bruker useFormik for å håndtere form-styring og validering
+import * as Yup from "yup"; // Importerer Yup for skjema valideringsregler
+import "./OrderForm.scss"; // Importerer stylesheet for å styling
 
 const OrderForm = () => {
   const formik = useFormik({
     initialValues: {
+      // Setter initialverdier for form-feltene, noe som er nyttig for å styre form-tilstander fra start
       fullName: "",
       email: "",
       address: "",
@@ -14,22 +15,23 @@ const OrderForm = () => {
       country: "",
     },
     validationSchema: Yup.object({
+      // Definerer valideringsreglene for hvert felt
       fullName: Yup.string()
-        .required("Fullt navn er påkrevd")
+        .required("Fullt navn er påkrevd") // Validerer at feltet er påkrevd og gir en tilpasset melding
         .matches(
           /^[a-zA-ZæøåÆØÅ\s]*$/,
-          "Navnet kan bare inneholde bokstaver og mellomrom"
+          "Navnet kan bare inneholde bokstaver og mellomrom" // Sjekker at navnet kun inneholder bokstaver og mellomrom
         ),
       email: Yup.string()
-        .email("Ugyldig e-postadresse")
-        .required("E-post er påkrevd"),
+        .email("Ugyldig e-postadresse") // Validerer at "stringen" er en e-postadresse
+        .required("E-post er påkrevd"), // Markerer feltet som påkrevd
       address: Yup.string().required("Postadresse er påkrevd"),
       city: Yup.string().required("By er påkrevd"),
       postalCode: Yup.string().required("Postnummer er påkrevd"),
       country: Yup.string().required("Land er påkrevd"),
     }),
     onSubmit: (values) => {
-      alert("Bestilling vellykket");
+      alert("Bestilling vellykket"); // Handling utført når skjemaet er validert og innsendt
     },
   });
 
@@ -38,7 +40,7 @@ const OrderForm = () => {
       <h2 className="form-header">Bestillingsskjema</h2>
       <form
         id="order-form"
-        onSubmit={formik.handleSubmit}
+        onSubmit={formik.handleSubmit} // Håndterer innsending av skjema
         className="order-form"
       >
         <label htmlFor="fullName">Fullt navn</label>
@@ -46,14 +48,15 @@ const OrderForm = () => {
           id="fullName"
           name="fullName"
           type="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.fullName}
+          onChange={formik.handleChange} // Kobler input-feltet til Formiks håndtering av endringer
+          onBlur={formik.handleBlur} // Håndterer når et felt mister fokus, viktig for validering på touch
+          value={formik.values.fullName} // Binder input-verdien til Formiks tilstandsverdier
         />
         {formik.touched.fullName && formik.errors.fullName ? (
-          <div className="error">{formik.errors.fullName}</div>
+          <div className="error">{formik.errors.fullName}</div> // Viser feilmeldinger for dette feltet
         ) : null}
 
+        {/* Gjentar samme mønster for resten av feltene */}
         <label htmlFor="email">E-postadresse</label>
         <input
           id="email"
